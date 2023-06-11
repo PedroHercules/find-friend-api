@@ -1,5 +1,5 @@
 import { OrgType } from '@/@types/org'
-import { OrgsRepository } from '../orgs-repository'
+import { OrgsRepository } from '../orgs.repository'
 
 export class MemoryOrgsRepository implements OrgsRepository {
   public orgs: OrgType[] = []

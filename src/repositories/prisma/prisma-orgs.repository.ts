@@ -1,5 +1,5 @@
 import { OrgType } from '@/@types/org'
-import { OrgsRepository } from '../orgs-repository'
+import { OrgsRepository } from '../orgs.repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaOrgsRepository implements OrgsRepository {
