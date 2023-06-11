@@ -1,4 +1,4 @@
-import { CreateOrgUseCaseProps } from '@/@types/org'
+import { CreateOrgUseCaseProps, CreateOrgUseCaseResponse } from '@/@types/org'
 import { OrgsRepository } from '@/repositories/orgs.repository'
 import { hash } from 'bcryptjs'
 import { OrgAlreadyExistsError } from '../errors/org-already-exists'
@@ -16,7 +16,7 @@ export class CreateOrgUseCase {
     password,
     whatsapp,
     zipCode,
-  }: CreateOrgUseCaseProps) {
+  }: CreateOrgUseCaseProps): Promise<CreateOrgUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
     const orgWithSameEmail = await this.orgsRepository.findByEmail(email)
