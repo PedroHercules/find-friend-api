@@ -11,3 +11,12 @@ export type OrgType = {
 
   pets?: PetType[]
 }
+
+export type CreateOrgUseCaseProps = {
+  name: string
+  email: string
+  zipCode: string
+  address: string
+  whatsapp: string
+  password: string
+}
