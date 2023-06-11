@@ -8,6 +8,7 @@ export type OrgType = {
   address: string
   whatsapp: string
   password: string
+  created_at?: Date
 
   pets?: PetType[]
 }
@@ -19,4 +20,17 @@ export type CreateOrgUseCaseProps = {
   address: string
   whatsapp: string
   password: string
+}
+
+export type CreateOrgUseCaseResponse = {
+  org: OrgType
+}
+
+export type AuthenticateOrgUseCaseProps = {
+  email: string
+  password: string
+}
+
+export type AuthenticateOrgUseCaseResponse = {
+  org: OrgType
 }
