@@ -9,5 +9,5 @@ export type OrgType = {
   whatsapp: string
   password: string
 
-  pets: PetType[]
+  pets?: PetType[]
 }
