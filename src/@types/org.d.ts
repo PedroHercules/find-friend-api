@@ -8,7 +8,6 @@ export type OrgType = {
   address: string
   whatsapp: string
   password: string
-  created_at?: Date
 
   pets?: PetType[]
 }
