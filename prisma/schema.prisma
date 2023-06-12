@@ -37,12 +37,12 @@ model Pet {
   org         Org      @relation(fields: [org_id], references: [id])
   created_at  DateTime @default(now())
 
-  AdoptionRequiriment AdoptionRequiriment[]
+  requirements AdoptionRequirement[]
 
   @@map("pets")
 }
 
-model AdoptionRequiriment {
+model AdoptionRequirement {
   id          String @id @default(uuid())
   requirement String
 
