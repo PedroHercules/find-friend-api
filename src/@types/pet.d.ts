@@ -12,29 +12,30 @@ export type PetType = {
   city: string
   state: string
   org_id: string
-  created_at: Date | string | undefined
+  created_at?: Date | string | undefined
   requirements: AdoptionRequirement[]
+  org?: OrgType
 }
 
-export type PetResponseType = {
-  id: string
+export type CreatePetUseCaseProps = {
   name: string
   description: string
-  energy: number
+  energy: number | Decimal
   environment: string
   size: string
   address: string
   city: string
   state: string
-  org_id: string
+  orgId: string
   requirements: AdoptionRequirement[]
-  created_at: Date | string | undefined
+}
 
-  org: OrgType
+export type CreatePetUseCaseResponse = {
+  pet: PetType
 }
 
 type AdoptionRequirement = {
-  id: string
+  id?: string
   requirement: string
-  pet_id: string
+  pet_id?: string
 }
