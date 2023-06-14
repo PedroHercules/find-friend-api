@@ -39,3 +39,8 @@ type AdoptionRequirement = {
   requirement: string
   pet_id?: string
 }
+
+export type FetchPetsByCityUseCaseProps = {
+  city: string
+  page: number
+}
