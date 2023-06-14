@@ -18,6 +18,7 @@ export class CreatePetUseCase {
     state,
     requirements,
     orgId,
+    pictures,
   }: CreatePetUseCaseProps): Promise<CreatePetUseCaseResponse> {
     const pet = await this.petsRepository.create({
       name,
@@ -30,6 +31,7 @@ export class CreatePetUseCase {
       state,
       requirements,
       org_id: orgId,
+      pictures,
     })
 
     return {

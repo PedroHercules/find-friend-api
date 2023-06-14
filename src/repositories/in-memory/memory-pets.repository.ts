@@ -21,16 +21,25 @@ export class MemoryPetsRepository implements PetsRepository {
 
     const requirements = data.requirements.map((req) => {
       return {
-        id: petId,
+        id: randomUUID(),
         requirement: req.requirement,
         pet_id: petId,
       }
     })
 
+    const pictures = data.pictures.map((picture) => {
+      return {
+        id: randomUUID(),
+        picture_url: picture.picture_url,
+        pet_id: petId,
+      }
+    })
+
     const pet = {
-      id: randomUUID(),
+      id: petId,
       ...data,
       requirements,
+      pictures,
       org: this.org,
     }
 

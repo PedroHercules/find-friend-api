@@ -21,10 +21,15 @@ export class PrismaPetsRepository implements PetsRepository {
             data: data.requirements,
           },
         },
+        pictures: {
+          createMany: {
+            data: data.pictures,
+          },
+        },
       },
     })
 
-    return pet
+    return pet as PetType
   }
 
   async listAllByCity(city: string, page: number) {
@@ -36,7 +41,7 @@ export class PrismaPetsRepository implements PetsRepository {
       skip: (page - 1) * 12,
     })
 
-    return pets
+    return pets as PetType[]
   }
 
   async findById(id: string) {
@@ -46,6 +51,6 @@ export class PrismaPetsRepository implements PetsRepository {
       },
     })
 
-    return pet
+    return pet as PetType
   }
 }

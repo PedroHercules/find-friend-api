@@ -29,6 +29,14 @@ describe('Fetch Pets By City Use Case', () => {
             requirement: 'Casa limpa',
           },
         ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
       })
     }
     for (let i = 0; i < 2; i++) {
@@ -45,6 +53,14 @@ describe('Fetch Pets By City Use Case', () => {
         requirements: [
           {
             requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
           },
         ],
       })
@@ -81,6 +97,14 @@ describe('Fetch Pets By City Use Case', () => {
         requirements: [
           {
             requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
           },
         ],
       })

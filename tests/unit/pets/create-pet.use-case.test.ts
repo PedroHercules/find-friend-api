@@ -28,6 +28,14 @@ describe('Create Pet Use Case', () => {
           requirement: 'Casa limpa',
         },
       ],
+      pictures: [
+        {
+          picture_url: 'https://photo.jpg',
+        },
+        {
+          picture_url: 'https://photo2.jpg',
+        },
+      ],
     })
 
     expect(pet.id).toEqual(expect.any(String))
