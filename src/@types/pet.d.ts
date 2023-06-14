@@ -15,6 +15,7 @@ export type PetType = {
   created_at?: Date | string | undefined
   requirements: AdoptionRequirement[]
   org?: OrgType
+  pictures: PetPictures[]
 }
 
 export type CreatePetUseCaseProps = {
@@ -28,6 +29,7 @@ export type CreatePetUseCaseProps = {
   state: string
   orgId: string
   requirements: AdoptionRequirement[]
+  pictures: PetPictures[]
 }
 
 export type CreatePetUseCaseResponse = {
@@ -38,6 +40,14 @@ type AdoptionRequirement = {
   id?: string
   requirement: string
   pet_id?: string
+  pet?: PetType
+}
+
+type PetPictures = {
+  id?: string
+  picture_url: string
+  pet_id?: string
+  pet?: PetType
 }
 
 export type FetchPetsByCityUseCaseProps = {

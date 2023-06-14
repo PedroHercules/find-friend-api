@@ -38,6 +38,7 @@ model Pet {
   created_at  DateTime @default(now())
 
   requirements AdoptionRequirement[]
+  pictures     PetPictures[]
 
   @@map("pets")
 }
@@ -50,4 +51,11 @@ model AdoptionRequirement {
   pet_id String
 
   @@map("adoption_requirements")
+}
+
+model PetPictures {
+  id          String @id @default(uuid())
+  picture_url String
+  pet         Pet    @relation(fields: [pet_id], references: [id])
+  pet_id      String
 }
