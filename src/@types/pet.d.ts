@@ -1,8 +1,24 @@
 import { Decimal } from '@prisma/client/runtime'
 import { OrgType } from './org'
 
+export type CreatePetDatabase = {
+  name: string
+  description: string
+  energy: number | Decimal
+  environment: string
+  size: string
+  address: string
+  city: string
+  state: string
+  org_id: string
+  created_at?: Date | string | undefined
+  requirements: AdoptionRequirement[]
+  org?: OrgType
+  pictures: PetPictures[]
+}
+
 export type PetType = {
-  id?: string
+  id: string
   name: string
   description: string
   energy: number | Decimal

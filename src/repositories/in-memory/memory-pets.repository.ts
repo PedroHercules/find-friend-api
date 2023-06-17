@@ -36,8 +36,8 @@ export class MemoryPetsRepository implements PetsRepository {
     })
 
     const pet = {
-      id: petId,
       ...data,
+      id: petId,
       requirements,
       pictures,
       org: this.org,
