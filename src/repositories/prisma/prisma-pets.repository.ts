@@ -1,10 +1,14 @@
-import { PetType } from '@/@types/pet'
+import {
+  CreatePetDatabase,
+  FetchPetsByCityUseCaseProps,
+  PetType,
+} from '@/@types/pet'
 import { PetsRepository } from '../pets.repository'
 import { prisma } from '@/lib/prisma'
 import { Decimal } from '@prisma/client/runtime'
 
 export class PrismaPetsRepository implements PetsRepository {
-  async create(data: PetType) {
+  async create(data: CreatePetDatabase) {
     const pet = await prisma.pet.create({
       data: {
         name: data.name,
@@ -32,10 +36,27 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet as PetType
   }
 
-  async listAllByCity(city: string, page: number) {
+  async listAllByCity({
+    city,
+    page,
+    energy,
+    environment,
+    size,
+  }: FetchPetsByCityUseCaseProps) {
     const pets = await prisma.pet.findMany({
       where: {
         city,
+        OR: [
+          {
+            energy: energy || '',
+          },
+          {
+            environment: environment || '',
+          },
+          {
+            size: size || '',
+          },
+        ],
       },
       take: 12,
       skip: (page - 1) * 12,
