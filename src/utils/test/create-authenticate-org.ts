@@ -1,0 +1,28 @@
+import { prisma } from '@/lib/prisma'
+import { hash } from 'bcryptjs'
+import { FastifyInstance } from 'fastify'
+import request from 'supertest'
+
+export async function createAndAuthenticateOrg(app: FastifyInstance) {
+  await prisma.org.create({
+    data: {
+      name: 'Pet Happy',
+      email: 'pethappy@email.com',
+      password: await hash('123456', 6),
+      address: 'Org Rua',
+      whatsapp: '8980988909',
+      zip_code: '07898888978',
+    },
+  })
+
+  const authResponse = await request(app.server).post('/orgs/auth').send({
+    email: 'pethappy@email.com',
+    password: '123456',
+  })
+
+  const { token } = authResponse.body
+
+  return {
+    token,
+  }
+}
