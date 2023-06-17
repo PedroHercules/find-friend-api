@@ -19,6 +19,7 @@ export type CreateOrgUseCaseProps = {
   address: string
   whatsapp: string
   password: string
+  confirmPassword: string
 }
 
 export type CreateOrgUseCaseResponse = {
