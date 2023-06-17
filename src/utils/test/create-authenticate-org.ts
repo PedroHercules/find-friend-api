@@ -3,11 +3,14 @@ import { hash } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
 import request from 'supertest'
 
-export async function createAndAuthenticateOrg(app: FastifyInstance) {
+export async function createAndAuthenticateOrg(
+  app: FastifyInstance,
+  email?: string,
+) {
   await prisma.org.create({
     data: {
-      name: 'Pet Happy',
-      email: 'pethappy@email.com',
+      name: 'PetHappy',
+      email: email ?? 'pet@email.com',
       password: await hash('123456', 6),
       address: 'Org Rua',
       whatsapp: '8980988909',
@@ -16,7 +19,7 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
   })
 
   const authResponse = await request(app.server).post('/orgs/auth').send({
-    email: 'pethappy@email.com',
+    email: 'pet@email.com',
     password: '123456',
   })
 

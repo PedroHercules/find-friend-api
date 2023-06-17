@@ -45,20 +45,10 @@ export class PrismaPetsRepository implements PetsRepository {
   }: FetchPetsByCityUseCaseProps) {
     const pets = await prisma.pet.findMany({
       where: {
-        OR: [
-          {
-            city,
-          },
-          {
-            energy: energy || '',
-          },
-          {
-            environment: environment || '',
-          },
-          {
-            size: size || '',
-          },
-        ],
+        city,
+        ...(energy && { energy }),
+        ...(environment && { environment }),
+        ...(size && { size }),
       },
       take: 12,
       skip: (page - 1) * 12,
