@@ -1,6 +1,7 @@
 import { MemoryOrgsRepository } from '@/repositories/in-memory/memory-orgs.repository'
 import { OrgsRepository } from '@/repositories/orgs.repository'
 import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists'
+import { PasswordNotMatchError } from '@/use-cases/errors/password-not-match'
 import { CreateOrgUseCase } from '@/use-cases/orgs/create.use-case'
 import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
@@ -21,6 +22,7 @@ describe('Create Org Use Case', () => {
       zipCode: '65402100',
       email: 'petfeliz@email.com',
       password: '123456',
+      confirmPassword: '123456',
       whatsapp: '8989182912',
     })
 
@@ -34,6 +36,7 @@ describe('Create Org Use Case', () => {
       zipCode: '65402100',
       email: 'petfeliz@email.com',
       password: '123456',
+      confirmPassword: '123456',
       whatsapp: '8989182912',
     })
 
@@ -49,6 +52,7 @@ describe('Create Org Use Case', () => {
       zipCode: '65402100',
       email: 'petfeliz@email.com',
       password: '123456',
+      confirmPassword: '123456',
       whatsapp: '8989182912',
     })
 
@@ -58,9 +62,24 @@ describe('Create Org Use Case', () => {
       zipCode: '65402100',
       email: 'petfeliz@email.com',
       password: '123456',
+      confirmPassword: '123456',
       whatsapp: '8989182912',
     })
 
     await expect(createOrgPromise).rejects.toBeInstanceOf(OrgAlreadyExistsError)
+  })
+
+  it('should not be able create org with wrong confirm password', async () => {
+    const createOrgPromise = sut.execute({
+      name: 'Pet Feliz',
+      address: 'Rua Pet Feliz',
+      zipCode: '65402100',
+      email: 'petfeliz@email.com',
+      password: '123456',
+      confirmPassword: '12345689',
+      whatsapp: '8989182912',
+    })
+
+    await expect(createOrgPromise).rejects.toBeInstanceOf(PasswordNotMatchError)
   })
 })
