@@ -7,8 +7,20 @@ export class FetchPetsByCityUseCase {
     this.petsRepository = petsRepository
   }
 
-  async execute({ city, page }: FetchPetsByCityUseCaseProps) {
-    const pets = await this.petsRepository.listAllByCity(city, page)
+  async execute({
+    city,
+    page,
+    energy,
+    environment,
+    size,
+  }: FetchPetsByCityUseCaseProps) {
+    const pets = await this.petsRepository.listAllByCity({
+      city,
+      energy,
+      environment,
+      page,
+      size,
+    })
 
     return {
       pets,

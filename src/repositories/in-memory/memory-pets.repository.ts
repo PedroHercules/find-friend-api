@@ -1,4 +1,4 @@
-import { PetType } from '@/@types/pet'
+import { FetchPetsByCityUseCaseProps, PetType } from '@/@types/pet'
 import { PetsRepository } from '../pets.repository'
 import { randomUUID } from 'crypto'
 import { OrgType } from '@/@types/org'
@@ -48,9 +48,22 @@ export class MemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async listAllByCity(city: string, page: number) {
+  async listAllByCity({
+    city,
+    energy,
+    environment,
+    page,
+    size,
+  }: FetchPetsByCityUseCaseProps) {
     const pets = this.pets
-      .filter((item) => item.city === city)
+      .filter((item) => {
+        return (
+          item.city === city ||
+          item.environment === environment ||
+          item.energy === energy ||
+          item.size === size
+        )
+      })
       .slice((page - 1) * 12, page * 12)
     return pets
   }

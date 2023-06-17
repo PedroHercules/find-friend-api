@@ -125,4 +125,289 @@ describe('Fetch Pets By City Use Case', () => {
       }),
     ])
   })
+
+  it('should be able to filter pets by energy', async () => {
+    for (let i = 0; i < 12; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Pet City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 5,
+        environment: 'Amplo',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+    for (let i = 0; i < 2; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Feliz City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 2,
+        environment: 'Amplo',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+
+    const { pets } = await sut.execute({
+      city: 'Feliz City',
+      page: 1,
+      energy: 2,
+    })
+
+    expect(pets).toHaveLength(2)
+    expect(pets).toEqual([
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+    ])
+  })
+
+  it('should be able to filter pets by environment', async () => {
+    for (let i = 0; i < 12; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Pet City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 5,
+        environment: 'Amplo',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+    for (let i = 0; i < 2; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Feliz City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 2,
+        environment: 'Médio',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+
+    const { pets } = await sut.execute({
+      city: 'Feliz City',
+      page: 1,
+      environment: 'Médio',
+    })
+
+    expect(pets).toHaveLength(2)
+    expect(pets).toEqual([
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+    ])
+  })
+
+  it('should be able to filter pets by size', async () => {
+    for (let i = 0; i < 12; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Pet City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 5,
+        environment: 'Amplo',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+    for (let i = 0; i < 2; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Feliz City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 2,
+        environment: 'Médio',
+        size: 'Pequeno',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+
+    const { pets } = await sut.execute({
+      city: 'Feliz City',
+      page: 1,
+      size: 'Pequeno',
+    })
+
+    expect(pets).toHaveLength(2)
+    expect(pets).toEqual([
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+    ])
+  })
+
+  it('should be able to filter pets by all two filters', async () => {
+    for (let i = 0; i < 12; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Pet City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 5,
+        environment: 'Amplo',
+        size: 'Médio',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+    for (let i = 0; i < 2; i++) {
+      await petsRepository.create({
+        name: 'Pet Feliz',
+        address: 'Rua Pet Feliz',
+        city: 'Feliz City',
+        state: 'Pets',
+        description: 'Pet feliz',
+        energy: 2,
+        environment: 'Médio',
+        size: 'Pequeno',
+        org_id: 'org-1',
+        requirements: [
+          {
+            requirement: 'Casa limpa',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://photo.jpg',
+          },
+          {
+            picture_url: 'https://photo2.jpg',
+          },
+        ],
+      })
+    }
+
+    const { pets } = await sut.execute({
+      city: 'Feliz City',
+      page: 1,
+      size: 'Pequeno',
+      environment: 'Médio',
+    })
+
+    expect(pets).toHaveLength(2)
+    expect(pets).toEqual([
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+      expect.objectContaining({
+        city: 'Feliz City',
+      }),
+    ])
+  })
 })

@@ -1,7 +1,7 @@
-import { PetType } from '@/@types/pet'
+import { FetchPetsByCityUseCaseProps, PetType } from '@/@types/pet'
 
 export interface PetsRepository {
   create(data: PetType): Promise<PetType>
-  listAllByCity(city: string, page: number): Promise<PetType[]>
+  listAllByCity(filters: FetchPetsByCityUseCaseProps): Promise<PetType[]>
   findById(id: string): Promise<PetType | null>
 }

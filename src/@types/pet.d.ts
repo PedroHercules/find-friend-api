@@ -52,5 +52,8 @@ type PetPictures = {
 
 export type FetchPetsByCityUseCaseProps = {
   city: string
+  environment?: string | null
+  energy?: number | null
+  size?: string | null
   page: number
 }
