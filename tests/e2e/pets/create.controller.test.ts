@@ -47,4 +47,37 @@ describe('Register Pet (E2E)', () => {
 
     expect(response.status).toEqual(201)
   })
+
+  it('should not be able to create a pet without authorization', async () => {
+    const response = await request(app.server)
+      .post('/pets')
+      .send({
+        name: 'Cachorro',
+        address: 'Endereço teste',
+        city: 'Teste City',
+        description: 'Adote',
+        energy: 5,
+        environment: 'Amplo',
+        size: 'Grande',
+        state: 'Teste state',
+        requirements: [
+          {
+            requirement: 'Cuidar bem',
+          },
+          {
+            requirement: 'Dar banho ',
+          },
+        ],
+        pictures: [
+          {
+            picture_url: 'https://image.png',
+          },
+          {
+            picture_url: 'https://image2.png',
+          },
+        ],
+      })
+
+    expect(response.status).toEqual(401)
+  })
 })
