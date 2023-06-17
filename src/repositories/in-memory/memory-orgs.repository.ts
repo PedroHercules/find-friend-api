@@ -29,14 +29,4 @@ export class MemoryOrgsRepository implements OrgsRepository {
 
     return org
   }
-
-  async findById(id: string): Promise<OrgType | null> {
-    const org = this.orgs.find((item) => item.id === id)
-
-    if (!org) {
-      return null
-    }
-
-    return org
-  }
 }
