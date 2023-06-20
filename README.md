@@ -43,6 +43,16 @@ To launch the PostgreSQL database container:
 docker-compose -f docker-compose-database.yml up -d
 ```
 
+To run migration in development mode:
+```bash
+npx prisma migrate dev
+```
+
+To run migration in production mode:
+```bash
+npx prisma migrate deploy
+```
+
 To launch the application server in development mode:
 
 ```bash
